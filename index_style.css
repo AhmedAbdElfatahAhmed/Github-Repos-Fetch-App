@@ -69,13 +69,6 @@ body
  margin-bottom: 5px;
 }
 
-.repos-container .show-data .repo_box:not(:last-child)
-{
-  /* margin-bottom: 5px; */
-
-}
-
-
 .repos-container .show-data .repo_box a,
 .repos-container .show-data .repo_box span
 {
