@@ -61,6 +61,12 @@ body
   background-color: #E0E0E0;
 }
 
+.repos-container .show-data .No_Data
+{
+  display: block;
+  text-align: center;
+}
+
  /* from js */
  .repos-container .show-data .repo_box
 {
