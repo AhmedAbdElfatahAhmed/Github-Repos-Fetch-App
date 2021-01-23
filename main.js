@@ -23,12 +23,31 @@ function getRepos() {
       showConfirmButton: false,
     });
   } else {
+    let status =false;
     fetch(`https://api.github.com/users/${theInput.value}/repos`)
-      .then((response) => response.json())
-      .then((repos) => {
+      .then((response) =>{ 
+        if(response.status==200){
+          status=true;
+        }else{
+          status=false;
+        }
+      return response.json();
+      })
+      .then((responseAsJSON) => {
+        if(!status){
+          Swal.fire({
+            title: "error",
+            text: responseAsJSON.message,
+            icon: "error",
+            timer: 2000,
+            showConfirmButton: false,
+          });
+          return false 
+        }
+        const  repos =responseAsJSON;
         // Empty the container
         reposData.innerHTML = "";
-
+   
         // create repositoriesNumber container div
         let repositoriesNumber_container = document.createElement("div");
         repositoriesNumber_container.className = "repositoriesNumber_container";
@@ -44,7 +63,6 @@ function getRepos() {
         repositoriesNumber_container.appendChild(repositoriesNumber);
         reposData.appendChild(repositoriesNumber_container);
         repositoriesNumber.className = "repositories_number";
-
         // loop on repositories
         repos.forEach((repo) => {
           //create the main Div Element
@@ -77,3 +95,4 @@ function getRepos() {
       });
   }
 }
+
